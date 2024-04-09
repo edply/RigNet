@@ -15,7 +15,7 @@ The project is developed on Ubuntu 16.04 with cuda10.0 and cudnn7.6.3.
 It has also been successfully tested on Windows 10.
 On both platforms, we suggest to use conda virtual environment. 
 
-#### For Linux user
+#### For Linux 
 
 **[2023.05.21]** I have tested the code on Ubuntu 22.04, with cuda 11.3. The following commands have been updated. 
 
@@ -35,11 +35,40 @@ pip install torch-geometric==1.7.2
 pip install numpy scipy matplotlib tensorboard open3d==0.9.0 opencv-python "rtree>=0.8,<0.9" trimesh[easy]  # Make sure to install open3d 0.9.0.
 ```
 
-#### For Windows user
+#### For Windows 
 
-The code has been tested on Windows 10 with cuda 10.1. The most important difference from Linux setup is, you need to download Windows-compiled Rtree from [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#rtree), and install it by
-`pip install Rtree‑0.9.4‑cp37‑cp37m‑win_amd64.whl` (64-bit system) or 
-`pip install Rtree‑0.9.4‑cp37‑cp37m‑win32.whl` (32-bit system). Other libraries can be installed in the same way as Linux setup instructions.
+Code was tested on Windows 10 using cuda 10.2:
+
+```
+conda create -n rignet python=3.7
+conda activate rignet
+pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+pip install torch-scatter -f https://pytorch-geometric.com/whl/torch-1.8.1+cu102.html
+pip install torch-sparse==0.6.12 -f https://data.pyg.org/whl/torch-1.8.1+cu102.html
+pip install torch-cluster==1.5.9 -f https://data.pyg.org/whl/torch-1.8.1+cu102.html
+pip install torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.8.1+cu102.html
+pip install torch-geometric==1.7.2 https://data.pyg.org/whl/torch-1.8.1+cu102.html
+pip install numpy scipy matplotlib tensorboard open3d==0.9.0 opencv-python "rtree>=0.8,<0.9" trimesh[easy]
+
+set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+
+
+
+conda create --name rignet python=3.7
+conda activate rignet
+conda install pytorch==1.12.0 torchvision==0.13.0 cudatoolkit=11.3 -c pytorch
+
+# load cuda_toolkit 11.3
+export PATH=/usr/local/cuda_11.3/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda_11.3/lib64
+
+# require g++ < 10 to install the following pytorch geometric version.
+pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.12.0+cu113.html # this take a while
+pip install torch-geometric==1.7.2
+
+pip install numpy scipy matplotlib tensorboard open3d==0.9.0 opencv-python "rtree>=0.8,<0.9" trimesh[easy]  # Make sure to install open3d 0.9.0.
+```
 
 
 
