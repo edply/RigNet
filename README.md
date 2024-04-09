@@ -52,22 +52,6 @@ pip install torch-geometric==1.7.2 https://data.pyg.org/whl/torch-1.8.1+cu102.ht
 pip install numpy scipy matplotlib tensorboard open3d==0.9.0 opencv-python "rtree>=0.8,<0.9" trimesh[easy]
 
 set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-
-
-
-conda create --name rignet python=3.7
-conda activate rignet
-conda install pytorch==1.12.0 torchvision==0.13.0 cudatoolkit=11.3 -c pytorch
-
-# load cuda_toolkit 11.3
-export PATH=/usr/local/cuda_11.3/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda_11.3/lib64
-
-# require g++ < 10 to install the following pytorch geometric version.
-pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.12.0+cu113.html # this take a while
-pip install torch-geometric==1.7.2
-
-pip install numpy scipy matplotlib tensorboard open3d==0.9.0 opencv-python "rtree>=0.8,<0.9" trimesh[easy]  # Make sure to install open3d 0.9.0.
 ```
 
 
